@@ -1,0 +1,113 @@
+if game.PlaceId == 14250325339 then
+ 
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "BaconBoss Hub | Ultra Punch Simulator!", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+_G.punch = true
+_G.bp = true
+_G.egg = true
+_G.bestpet = true
+_G.rb = true
+
+function punch()
+     while _G.punch == true do
+     game:GetService("ReplicatedStorage").Assets.Network.Punch:FireServer(1)
+     wait(0.000000000001)
+    end
+end
+
+function bp()
+     while _G.bp == true do
+     game:GetService("ReplicatedStorage").Assets.Network.EquipBestGlove:FireServer()
+     wait(0.1)
+   end
+end
+
+function egg()
+     while _G.egg == true do
+     game:GetService("ReplicatedStorage").Assets.Network.HatchEgg:InvokeServer("StarterEgg",1)
+     wait(0.00000000000001)
+  end
+end
+
+function bestpet()
+       while _G.bestpet == true do
+        game:GetService("ReplicatedStorage").Assets.Network.EquipBestPets:FireServer()
+        wait(0.1)
+    end
+end
+
+function rb()
+      while _G.rb == true do
+        game:GetService("ReplicatedStorage").Assets.Network.DoRebirth:FireServer(1)
+        wait(0.1)
+   end
+end
+
+local MainTab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local eggTab = Window:MakeTab({
+	Name = "Egg",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+MainTab:AddLabel("Note: Use 'Fling' In This Script For Punch Faster")
+
+MainTab:AddButton({
+	Name = "Inf Yeild",
+	Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+    end
+}) 
+
+MainTab:AddToggle({
+	Name = "Auto Punch",
+	Default = false,
+	Callback = function(Value)
+		_G.punch = Value
+        punch()
+	end    
+})
+
+MainTab:AddToggle({
+	Name = "Auto Equip Best Glove",
+	Default = false,
+	Callback = function(Value)
+		_G.bp = Value
+        bp()
+	end    
+})
+
+MainTab:AddToggle({
+	Name = "Auto Rebirth",
+	Default = false,
+	Callback = function(Value)
+		_G.rb = Value
+        rb()
+	end    
+})
+
+eggTab:AddToggle({
+	Name = "Auto Hatch Cheapest Egg",
+	Default = false,
+	Callback = function(Value)
+		_G.egg = Value
+        egg()
+	end    
+})
+
+eggTab:AddToggle({
+	Name = "Auto Equip Best Pet",
+	Default = false,
+	Callback = function(Value)
+		_G.bestpet = Value
+        bestpet()
+	end    
+})
+
+end
