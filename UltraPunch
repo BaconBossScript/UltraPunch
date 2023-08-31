@@ -21,8 +21,10 @@ local Window = OrionLib:MakeWindow({Name = "BaconBoss Hub | Ultra Punch Simulato
 _G.punch = true
 _G.bp = true
 _G.egg = true
+_G.segg = "StarterEgg"
 _G.bestpet = true
 _G.rb = true
+
 
 function punch()
      while _G.punch == true do
@@ -40,7 +42,7 @@ end
 
 function egg()
      while _G.egg == true do
-     game:GetService("ReplicatedStorage").Assets.Network.HatchEgg:InvokeServer("StarterEgg",1)
+     game:GetService("ReplicatedStorage").Assets.Network.HatchEgg:InvokeServer(_G.segg,1)
      wait(0.00000000000001)
   end
 end
@@ -108,11 +110,20 @@ MainTab:AddToggle({
 })
 
 eggTab:AddToggle({
-	Name = "Auto Hatch Cheapest Egg",
+	Name = "Auto Hatch",
 	Default = false,
 	Callback = function(Value)
 		_G.egg = Value
         egg()
+	end    
+})
+
+eggTab:AddDropdown({
+	Name = "Select",
+	Default = "StarterEgg",
+	Options = {"StarterEgg", "IceEgg"},
+	Callback = function(Value)
+		_G.segg = Value
 	end    
 })
 
