@@ -8,7 +8,7 @@ OrionLib:MakeNotification({
     Time = 5
 })
 
-_G.Key = "plsfollowmeontwitter"
+_G.Key = "baconbossscript"
 _G.KeyInput = "string"
 
 function Hub()
