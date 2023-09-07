@@ -1,36 +1,18 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Key System", HidePremium = false, SaveConfig = true})
 
-local Window = OrionLib:MakeWindow({Name = "Key System | BaconBossScript", HidePremium = false, SaveConfig = false, IntroEnabled = false})
+OrionLib:MakeNotification({
+    Name = "Logged In!",
+    Content = "You Logged In!",
+    Image = "rbxassetid://4483345998",
+    Time = 5
+})
 
-_G.Key = ""
+_G.Key = "memaybeo"
 _G.KeyInput = "string"
 
-function GetKeyFromURL()
-    local keyURL = "https://pastebin.com/raw/XGi6mu7m"
-    local success, response = pcall(function()
-        return game:HttpGet(keyURL)
-    end)
-    if success then
-        return response
-    else
-        warn("Failed to get key from URL")
-        return nil
-    end
-end
+function Hub()
 
-function CheckKey()
-    local keyFromURL = GetKeyFromURL()
-
-    if keyFromURL and _G.KeyInput == keyFromURL then
-        OrionLib:MakeNotification({
-            Name = "Correct Key!",
-            Content = "Wait a seconds script is loading...",
-            Image = "rbxassetid://4483345998",
-            Time = 4
-        })
-        wait(3)
-        OrionLib:Destroy()
-        wait(1)
         if game.PlaceId == 14250325339 then
  
             local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
@@ -155,18 +137,29 @@ function CheckKey()
             })
             
             end
-    else
-        OrionLib:MakeNotification({
-            Name = "Incorrect Key",
-            Content = "The key you entered is incorrect, please try again.",
-            Image = "rbxassetid://4483345998",
-            Time = 5
-        })
-    end
+
+end
+
+function CorrectKeyNotification()
+OrionLib:MakeNotification({
+    Name = "Correct Key!",
+    Content = "You have entered correct key!",
+    Image = "rbxassetid://4483345998",
+    Time = 2
+})
+end
+
+function IncorrectKeyNotification()
+OrionLib:MakeNotification({
+    Name = "Inorrect Key!",
+    Content = "You have entered incorrect key!",
+    Image = "rbxassetid://4483345998",
+    Time = 2
+})
 end
 
 local Tab = Window:MakeTab({
-    Name = "Key System",
+    Name = "Key",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
@@ -177,16 +170,20 @@ Tab:AddTextbox({
     TextDisappear = true,
     Callback = function(Value)
         _G.KeyInput = Value
-    end
+    end      
 })
 
 Tab:AddButton({
     Name = "Check Key",
     Callback = function()
-        CheckKey()
-    end
+if _G.KeyInput == _G.Key then
+ CorrectKeyNotification()
+Hub()
+ else
+ IncorrectKeyNotification()
+      end   
+end
 })
-
 local Section = Tab:AddSection({
-    Name = "Discord : dsc.gg/baconboss"
+    Name = "Key in: discord.gg/HvpXquveNA"
 })
